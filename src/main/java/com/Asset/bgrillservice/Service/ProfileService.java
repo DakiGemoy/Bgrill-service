@@ -11,4 +11,8 @@ public class ProfileService {
     @Autowired
     private ProfileRepos profileRepos;
 
+    public Profile getProfile(Integer profile_id){
+        return profileRepos.findById(profile_id).get();
+    }
+
 }
