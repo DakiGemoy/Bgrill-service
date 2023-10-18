@@ -19,11 +19,13 @@ public class Item {
     private String name;
     private String description;
     private Long stock;
+    private Long price;
 
-    public Item(String Name,String Desc, Long Stock){
+    public Item(String Name,String Desc, Long Stock, Long Price){
         this.name = Name;
         this.description = Desc;
         this.stock = Stock;
+        this.price = Price;
     }
 
 }

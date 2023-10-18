@@ -1,6 +1,7 @@
 package com.Asset.bgrillservice.Service;
 
 import com.Asset.bgrillservice.Entity.Item;
+import com.Asset.bgrillservice.Handler.BaseExceptionHandler;
 import com.Asset.bgrillservice.Model.request.UpsertItem;
 import com.Asset.bgrillservice.Model.response.PagingResponse;
 import com.Asset.bgrillservice.Repository.ItemRepos;
@@ -13,7 +14,7 @@ public class ItemService {
     @Autowired
     private ItemRepos itemRepos;
 
-    public PagingResponse<Item> getList(String name){
+    public PagingResponse<Item> getList(String name) throws BaseExceptionHandler {
 
         PagingResponse<Item> back = new PagingResponse<>();
         back.setData(itemRepos.getListItemByName(name));
@@ -22,13 +23,13 @@ public class ItemService {
         return back;
     }
 
-    public Boolean postUpsert(UpsertItem item){
+    public Boolean postUpsert(UpsertItem item) throws  BaseExceptionHandler {
         try {
             if(item.getId() == 0){
-                itemRepos.save(new Item(item.getName(), item.getDescription(), item.getStock()));
+                itemRepos.save(new Item(item.getName(), item.getDescription(), item.getStock(), item.getPrice()));
             }
             else {
-                itemRepos.save(new Item(item.getId(), item.getName(), item.getDescription(), item.getStock()));
+                itemRepos.save(new Item(item.getId(), item.getName(), item.getDescription(), item.getStock(), item.getPrice()));
             }
             return true;
         } catch (Exception ex){
@@ -36,11 +37,11 @@ public class ItemService {
         }
     }
 
-    public Item getUpdate(Integer id){
+    public Item getUpdate(Integer id) throws BaseExceptionHandler {
         return itemRepos.findById(id).get();
     }
 
-    public int countItemByName(String itemName){
+    public int countItemByName(String itemName) throws BaseExceptionHandler {
         return itemRepos.countByName(itemName);
     }
 

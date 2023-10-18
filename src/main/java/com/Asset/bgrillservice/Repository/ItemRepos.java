@@ -10,7 +10,7 @@ import java.util.List;
 public interface ItemRepos extends JpaRepository<Item, Integer> {
 
     @Query("""
-            SELECT new com.Asset.bgrillservice.Entity.Item(it.id, it.name, it.description, it.stock)
+            SELECT new com.Asset.bgrillservice.Entity.Item(it.id, it.name, it.description, it.stock, it.price)
             FROM Item as it
             WHERE it.name LIKE %:name%
             """)

@@ -13,5 +13,6 @@ public class UpsertItem {
     private String name;
     private String description;
     private Long stock;
+    private Long price;
 
 }
